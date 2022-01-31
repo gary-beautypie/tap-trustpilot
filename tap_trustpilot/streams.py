@@ -80,7 +80,6 @@ class Paginated(Stream):
             LOGGER.info("Fetching page {} for {}".format(page, self.tap_stream_id))
             params = self.get_params(page)
             resp = ctx.client.GET({"path": self.path, "params": params}, self.tap_stream_id)
-            print(resp)
             if resp['status_code'] == 400:  # short circuit for len(records) == page_size
                 break
             raw_records = self.format_response(resp)
